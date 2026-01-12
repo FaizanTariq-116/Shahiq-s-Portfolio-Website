@@ -1,0 +1,81 @@
+.orbit-container {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  margin: auto;
+}
+
+/* Center glowing circle */
+.orbit-center {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff9a9a, #ff3b3b);
+  box-shadow: 0 0 40px rgba(255, 59, 59, 0.5);
+  z-index: 3;
+}
+
+/* Rings */
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 59, 59, 0.25);
+}
+
+.orbit-ring.middle {
+  inset: 40px;
+  border-color: rgba(255, 59, 59, 0.18);
+}
+
+.orbit-ring.inner {
+  inset: 80px;
+  border-color: rgba(255, 59, 59, 0.12);
+}
+
+/* Orbit icons */
+.orbit-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+}
+
+.orbit-icon {
+  width: 44px;
+  height: 44px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff3b3b;
+  box-shadow: 0 8px 20px rgba(255, 59, 59, 0.35);
+  transform: translate(160px, -50%);
+  transition: transform 0.3s ease;
+}
+
+.orbit-icon:hover {
+  transform: translate(160px, -50%) scale(1.2);
+}
+
+/* Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbit-spin {
+  animation: spin 30s linear infinite;
+}
+
+.orbit-spin-slow {
+  animation: spin 50s linear infinite;
+}
