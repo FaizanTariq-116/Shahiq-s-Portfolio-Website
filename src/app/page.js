@@ -5,10 +5,20 @@ import HeroSection from "./components/heroSection";
 import Tools from "./components/tools";
 import Slider from "./components/services";
 import NiddlePointer from "./components/niddlePointer";
+import AboutSection from "./components/about";
+import ProjectsSection from "./components/project";
+import ContactCard from "./components/contactSection";
+
 export default function Page() {
   return (
     <>
       <HeroSection />
+      <Text
+        title="About"
+        highlight="Me"
+        description="We provide modern web solutions focused on performance, scalability, and clean UI design."
+      />
+      <AboutSection />
       <Navbar />
       <Text />
       <Tools />
@@ -30,6 +40,8 @@ export default function Page() {
         highlight="Studies"
         description="We provide modern web solutions focused on performance, scalability, and clean UI design."
       />
+      <ProjectsSection/>
+      <ContactCard/>
     </>
   );
 }
