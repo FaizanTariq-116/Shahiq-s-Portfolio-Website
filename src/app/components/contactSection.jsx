@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
-export default function ContactCard() {
+export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -70,7 +70,7 @@ export default function ContactCard() {
           max-w-71.25 sm:max-w-76.25 md:max-w-100
           bg-[#F0F0F0]
           rounded-3xl
-          shadow-[0_6px_12px_rgba(0,0,0,0.06),0_18px_35px_rgba(0,0,0,0.15)]
+          shadow-[0_6px_12px_rgba(0,0,0,0.06),0_15px_30px_rgba(0,0,0,0.10)]
           p-4 sm:p-5 md:p-7
           text-center
           mt-3 sm:mt-4 md:mt-12
@@ -87,7 +87,7 @@ export default function ContactCard() {
         </h2>
 
         <p className="text-[10px] sm:text-[11px] md:text-sm text-gray-500 mb-3 md:mb-5">
-          Have a project in mind? I’ll respond within 6 hours.
+          Have anything in mind? I’ll respond within 6 hours.
         </p>
 
         {/* Form */}
@@ -104,7 +104,7 @@ export default function ContactCard() {
               rounded-full px-3 md:px-5
               text-[12px] md:text-sm
               outline-none bg-white
-              shadow-[inset_0_2px_4px_rgba(0,0,0,0.20)]
+              shadow-[inset_2px_2px_4px_rgba(0,0,0,0.20)]
               focus:shadow-[inset_0_3px_6px_rgba(0,0,0,0.25)]
               transition
             "
@@ -122,7 +122,7 @@ export default function ContactCard() {
               rounded-full px-3 md:px-5
               text-[12px] md:text-sm
               outline-none bg-white
-              shadow-[inset_0_2px_4px_rgba(0,0,0,0.20)]
+              shadow-[inset_2px_2px_4px_rgba(0,0,0,0.20)]
               focus:shadow-[inset_0_3px_6px_rgba(0,0,0,0.25)]
               transition
             "
@@ -140,7 +140,7 @@ export default function ContactCard() {
               text-[12px] md:text-sm
               outline-none bg-white
               resize-none
-              shadow-[inset_0_2px_4px_rgba(0,0,0,0.20)]
+              shadow-[inset_2px_2px_4px_rgba(0,0,0,0.20)]
               focus:shadow-[inset_0_3px_6px_rgba(0,0,0,0.25)]
               transition
             "
@@ -156,7 +156,14 @@ export default function ContactCard() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-8 sm:h-9 md:h-11 rounded-full bg-black text-white text-[12px] md:text-sm shadow-md hover:opacity-90 transition disabled:opacity-50"
+            className="
+  w-full h-8 sm:h-9 md:h-11 rounded-full bg-black
+  active:scale-101
+  transition-transform duration-10
+  text-white text-[12px] md:text-sm
+  shadow-md hover:opacity-90
+  disabled:opacity-50
+"
           >
             {loading ? "Sending..." : "Send message"}
           </button>

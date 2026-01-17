@@ -48,7 +48,8 @@ export default function ProjectsSection() {
                 "p-4 sm:p-5 md:p-6",
                 "flex items-center justify-center",
                 "aspect-4/3 w-full",
-                "max-w-85 sm:max-w-95 md:max-w-115 lg:max-w-125"
+                "max-w-85 sm:max-w-95 md:max-w-115 lg:max-w-125",
+                "shadow-[0_6px_12px_rgba(0,0,0,0.06),0_15px_40px_rgba(0,0,0,0.10)]"
               )}
             >
               <Image

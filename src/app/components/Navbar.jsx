@@ -25,13 +25,15 @@ const Navbar = () => {
     <nav
       className={clsx(
         "fixed bottom-3 left-1/2 -translate-x-1/2",
-        "bg-[#F0F0F0]",
+        "bg-gray-50",
         "shadow-5xl",
         "rounded-2xl",
         "px-6 py-3",
         "flex items-center gap-2",
         "border-gray-800",
-        "z-9999"
+        "z-9999",
+        "shadow-[inset_2px_2px_4px_rgba(0,0,0,0.10)]",
+        "focus:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.10)]"
       )}
     >
       {navItems.map((item) => {
@@ -43,7 +45,7 @@ const Navbar = () => {
             href={item.href}
             className={clsx(
               "flex flex-col items-center gap-1 px-4 py-1 rounded-xl transition-all",
-              { "bg-red-500 text-white": isActive }
+              { "bg-red-500 text-white": isActive },
             )}
           >
             <span className={clsx("text-xl")}>{item.icon}</span>

@@ -7,7 +7,8 @@ import Slider from "./components/services";
 import NiddlePointer from "./components/niddlePointer";
 import AboutSection from "./components/about";
 import ProjectsSection from "./components/project";
-import ContactCard from "./components/contactSection";
+import ContactSection from "./components/contactSection";
+import Re_Direct from "./components/re-direct-component";
 
 export default function Page() {
   return (
@@ -29,7 +30,7 @@ export default function Page() {
       />
       <Slider/>
       <Text
-        title="Design"
+          title="Design"
         highlight="Process"
         description="We provide modern web solutions focused on performance, scalability, and clean UI design.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         bgColor="bg-gray-50"
@@ -41,7 +42,8 @@ export default function Page() {
         description="We provide modern web solutions focused on performance, scalability, and clean UI design."
       />
       <ProjectsSection/>
-      <ContactCard/>
+      <ContactSection/>
+      <Re_Direct/>
     </>
   );
-}
+};

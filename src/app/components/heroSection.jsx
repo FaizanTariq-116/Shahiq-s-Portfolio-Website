@@ -8,6 +8,9 @@ import { TfiWrite } from "react-icons/tfi";
 import { BsQuestionSquare } from "react-icons/bs";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
+import clsx from "clsx";
+
+/* ---------------- ORBIT DATA ---------------- */
 
 const orbitItems = [
   { href: "/", icon: FaHome },
@@ -23,6 +26,8 @@ const orbitItems = [
   { href: "/features", icon: BsQuestionSquare },
   { href: "/apps", icon: FaToolbox },
 ];
+
+/* ---------------- ORBIT COMPONENT ---------------- */
 
 function Orbit({ direction = "clockwise" }) {
   const orbitRef = useRef(null);
@@ -51,6 +56,7 @@ function Orbit({ direction = "clockwise" }) {
         {orbitItems.map((item, index) => {
           const angle = (360 / orbitItems.length) * index;
           const Icon = item.icon;
+
           return (
             <Link
               key={index}
@@ -82,16 +88,19 @@ function Orbit({ direction = "clockwise" }) {
           );
         })}
       </div>
+
       <div className="orbit-ring middle" />
-      <div className="orbit-ring inner" />
+        <div className="orbit-ring inner" />
     </motion.div>
   );
 }
 
+/* ---------------- HERO SECTION ---------------- */
+
 export default function HeroSection() {
   return (
     <section className="relative w-full min-h-screen bg-white flex items-center justify-center overflow-hidden">
-      {/* ORBITAL NAVBARS */}
+      {/* ORBITAL NAVS */}
       <div className="orbit-wrapper left">
         <Orbit direction="clockwise" />
       </div>
@@ -113,32 +122,96 @@ export default function HeroSection() {
         </h1>
 
         <p className="mt-6 text-gray-500 text-base md:text-lg">
-          UI/UX Designer focused on creating clean, functional, and user-centered
-          interfaces for web and mobile products.
+          UI/UX Designer focused on creating clean, functional, and
+          user-centered interfaces for web and mobile products.
         </p>
 
-        <div className="mt-8 flex items-center justify-center gap-4">
-          <button className="px-6 py-3 rounded-full bg-red-500 text-white font-medium hover:bg-red-600 transition">
+        {/* BUTTONS + HANDWRITTEN NOTE */}
+        <div className="mt-8 flex items-center justify-center gap-4 relative">
+          <button
+            className="px-6 py-3 rounded-full bg-red-500 text-white font-medium  hover:bg-red-600 active:scale-101
+             transition-transform duration-20"
+          >
             Discuss your ideas
           </button>
-          <button className="px-6 py-3 rounded-full bg-black text-white font-medium hover:bg-gray-800 transition-colors">
-            Button Text
-          </button>
+
+          {/* Button Text + Arrow */}
+          <div className="relative">
+            <button className="px-6 py-3 rounded-full bg-black text-white font-medium hover:bg-gray-800 active:scale-101
+             transition-transform duration-20">
+              Button Text
+            </button>
+
+            {/* Handwritten note + curved arrow */}
+            <motion.svg
+              width="280"
+              height="110"
+              viewBox="0 0 280 110"
+              className={clsx(
+                "hidden lg:block", // hide on mobile + tablet,
+                "absolute",
+                "-left-75",
+                "top-12",
+              )}
+              animate={{ rotate: [-3, 3, -3] }}
+              transition={{
+                duration: 4,
+                ease: "easeInOut",
+                repeat: Infinity,
+              }}
+            >
+              {/* Handwritten text */}
+              <g className="md:-translate-x-2">
+                <text
+                  x="10"
+                  y="78"
+                  fill="#ff4d4d"
+                  fontSize="13"
+                  fontFamily="'Dancing Script', 'Segoe Script', 'Cursive'"
+                >
+                  Schedule a free call now
+                </text>
+              </g>
+
+              {/* Arrow */}
+              <svg
+                width="100"
+                height="80"
+                viewBox="0 0 100 80"
+                fill="none"
+                className="-rotate-1"
+              >
+                <motion.path
+                  d="M 10 65 Q 12 15 85 15 M 70 5 L 85 15 L 70 28"
+                  stroke="#FF4D4D"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  vectorEffect="non-scaling-stroke"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: "easeInOut",
+                    delay: 0.5,
+                  }}
+                  viewport={{ once: true }}
+                />
+              </svg>
+            </motion.svg>
+          </div>
         </div>
 
-        <p className="mt-4 text-sm text-red-400 italic">
-          Schedule a free call now
-        </p>
-
+        {/* CLIENTS */}
         <div className="mt-12">
           <p className="text-xs tracking-widest text-gray-400 mb-4">
             OUR TRUSTED CLIENTS
           </p>
           <div className="flex items-center justify-center gap-8 text-gray-400 text-sm">
             <span>Nexter</span>
-            <span>oslo.</span>
-            <span>NOME</span>
-            <span>next</span>
+            <span>Oslo</span>
+            <span>Nome</span>
+            <span>Next</span>
           </div>
         </div>
       </motion.div>
