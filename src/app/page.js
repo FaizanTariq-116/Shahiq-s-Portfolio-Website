@@ -9,6 +9,7 @@ import AboutSection from "./components/about";
 import ProjectsSection from "./components/project";
 import ContactSection from "./components/contactSection";
 import Re_Direct from "./components/re-direct-component";
+import ClientsSlider from "./components/clientsSlide";
 
 export default function Page() {
   return (
@@ -42,6 +43,12 @@ export default function Page() {
         description="We provide modern web solutions focused on performance, scalability, and clean UI design."
       />
       <ProjectsSection/>
+      <Text
+        title="What Our"
+        highlight="Clients Say"
+        description="We provide modern web solutions focused on performance, scalability, and clean UI design."
+      />
+      <ClientsSlider/>
       <ContactSection/>
       <Re_Direct/>
     </>

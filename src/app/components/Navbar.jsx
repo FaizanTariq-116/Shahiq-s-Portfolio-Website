@@ -28,7 +28,7 @@ const Navbar = () => {
         "bg-gray-50",
         "shadow-5xl",
         "rounded-2xl",
-        "px-6 py-3",
+        "px-5 py-3",
         "flex items-center gap-2",
         "border-gray-800",
         "z-9999",

@@ -90,7 +90,7 @@ function Orbit({ direction = "clockwise" }) {
       </div>
 
       <div className="orbit-ring middle" />
-        <div className="orbit-ring inner" />
+      <div className="orbit-ring inner" />
     </motion.div>
   );
 }
@@ -129,17 +129,29 @@ export default function HeroSection() {
         {/* BUTTONS + HANDWRITTEN NOTE */}
         <div className="mt-8 flex items-center justify-center gap-4 relative">
           <button
-            className="px-6 py-3 rounded-full bg-red-500 text-white font-medium  hover:bg-red-600 active:scale-101
-             transition-transform duration-20"
+            className={clsx(
+              "bg-red-500 hover:bg-red-600 active:scale-101",
+              "transition-transform duration-20",
+              "text-white px-5 sm:px-7 py-2 sm:py-3",
+              "rounded-full shadow-md",
+              "text-sm sm:text-base whitespace-nowrap",
+            )}
           >
             Discuss your ideas
           </button>
 
           {/* Button Text + Arrow */}
           <div className="relative">
-            <button className="px-6 py-3 rounded-full bg-black text-white font-medium hover:bg-gray-800 active:scale-101
-             transition-transform duration-20">
-              Button Text
+            <button
+              className={clsx(
+                "bg-[#0b0e14] hover:bg-gray-800 active:scale-101",
+                "transition-transform duration-20",
+                "text-white px-5 sm:px-7 py-2 sm:py-3",
+                "rounded-full shadow-md",
+                "text-sm sm:text-base whitespace-nowrap",
+              )}
+            >
+              View services
             </button>
 
             {/* Handwritten note + curved arrow */}
@@ -151,7 +163,7 @@ export default function HeroSection() {
                 "hidden lg:block", // hide on mobile + tablet,
                 "absolute",
                 "-left-75",
-                "top-12",
+                "top-5",
               )}
               animate={{ rotate: [-3, 3, -3] }}
               transition={{

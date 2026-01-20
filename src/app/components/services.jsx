@@ -11,12 +11,37 @@ import { BsQuestionSquare } from "react-icons/bs";
 import { GrNext, GrPrevious } from "react-icons/gr";
 
 const slides = [
-  { title: "UI Design", description: "Creating visually polished interfaces.", icon: <FaReact size={40} /> },
-  { title: "UX Design", description: "Smooth and intuitive experiences.", icon: <FaHome size={40} /> },
-  { title: "Graphic Design", description: "Communicating brand identity.", icon: <LuPenTool size={40} /> },
-  { title: "Web Development", description: "Fast and responsive websites.", icon: <FaToolbox size={40} /> },
-  { title: "Brand Identity", description: "Unique logos and branding.", icon: <TbTools size={40} /> },
-  { title: "Motion Graphics", description: "Engaging animations.", icon: <BsQuestionSquare size={40} /> },
+  {
+    title: "UI Design",
+    description: "Creating visually polished interfaces.",
+    icon: <FaReact size={40} />,
+  },
+  {
+    title: "UX Design",
+    description: "Smooth and intuitive experiences.",
+    icon: <FaHome size={40} />,
+  },
+  {
+    title: "Graphic Design",
+    description: "Communicating brand identity.",
+    icon: <LuPenTool size={40} />,
+  },
+  {
+    title: "Web Development",
+    description:
+      "Fast and responsive websites.Fast and responsive websites Fast and responsive websites Fast and responsive websites",
+    icon: <FaToolbox size={40} />,
+  },
+  {
+    title: "Brand Identity",
+    description: "Unique logos and branding.",
+    icon: <TbTools size={40} />,
+  },
+  {
+    title: "Motion Graphics",
+    description: "Engaging animations.",
+    icon: <BsQuestionSquare size={40} />,
+  },
 ];
 
 export default function Slider() {
@@ -56,10 +81,18 @@ export default function Slider() {
   }, [x, totalWidth]);
 
   const slideNext = () =>
-    animate(x, x.get() - slideWidth, { type: "spring", stiffness: 200, damping: 25 });
+    animate(x, x.get() - slideWidth, {
+      type: "spring",
+      stiffness: 200,
+      damping: 25,
+    });
 
   const slidePrev = () =>
-    animate(x, x.get() + slideWidth, { type: "spring", stiffness: 200, damping: 25 });
+    animate(x, x.get() + slideWidth, {
+      type: "spring",
+      stiffness: 200,
+      damping: 25,
+    });
 
   // Autoplay
   useEffect(() => {
@@ -98,7 +131,7 @@ export default function Slider() {
                 "items-center",
                 "justify-center",
                 "text-center",
-                "relative"
+                "relative",
               )}
               style={{ width: slideWidth }}
               whileHover={{ scale: 1.05 }}
@@ -113,17 +146,44 @@ export default function Slider() {
                     "bottom-2",
                     "border-l",
                     "border-dashed",
-                    "border-gray-400"
+                    "border-gray-400",
                   )}
                 />
               )}
 
-              <div className={clsx("flex", "flex-col", "items-center", "justify-center", "h-full")}>
+              <div
+                className={clsx(
+                  "flex",
+                  "flex-col",
+                  "items-center",
+                  "justify-center",
+                  "h-full",
+                )}
+              >
                 <div className={clsx("mb-4")}>{slide.icon}</div>
-                <h3 className={clsx("text-red-500", "font-bold", "text-lg", "mb-2")}>
+                <h3
+                  className={clsx(
+                    "text-red-500",
+                    "font-bold",
+                    "text-lg",
+                    "mb-2",
+                  )}
+                >
                   {slide.title}
                 </h3>
-                <p className={clsx("text-gray-400")}>{slide.description}</p>
+                <p
+                  className={clsx(
+                    "text-gray-400",
+                    "text-sm sm:text-base md:text-base lg:text-base",
+                    "leading-relaxed",
+                    "max-w-55 sm:max-w-65 md:max-w-70 lg:max-w-[320px]",
+                    "wrap-break-word",
+                    "whitespace-normal",
+                    "line-clamp-5",
+                  )}
+                >
+                  {slide.description}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -140,7 +200,7 @@ export default function Slider() {
             "p-3",
             "rounded-full",
             "hover:bg-red-600",
-            "transition"
+            "transition",
           )}
         >
           <GrPrevious />
@@ -154,7 +214,7 @@ export default function Slider() {
             "p-3",
             "rounded-full",
             "hover:bg-red-600",
-            "transition"
+            "transition",
           )}
         >
           <GrNext />

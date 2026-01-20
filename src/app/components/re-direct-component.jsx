@@ -65,8 +65,13 @@ export default function Re_Direct() {
         {/* Red Button */}
         <div className="relative">
           <button
-            className="bg-red-500 hover:bg-red-600 active:scale-101
-             transition-transform duration-20 text-white px-5 sm:px-7 py-2 sm:py-3 rounded-full shadow-md text-sm sm:text-base whitespace-nowrap"
+            className={clsx(
+              "bg-red-500 hover:bg-red-600 active:scale-101",
+              "transition-transform duration-20",
+              "text-white px-5 sm:px-7 py-2 sm:py-3",
+              "rounded-full shadow-md",
+              "text-sm sm:text-base whitespace-nowrap",
+            )}
           >
             Discuss your ideas
           </button>
@@ -79,8 +84,8 @@ export default function Re_Direct() {
             className={clsx(
               "absolute",
               "left-1/2",
-              "-translate-x-[60%]",
-              "top-12",
+              "-translate-x-[62%]",
+              "top-4 sm:top-12 md:top-11",
               "scale-75",
               "sm:scale-90",
               "md:scale-100",
@@ -116,9 +121,9 @@ export default function Re_Direct() {
               className="-rotate-1"
             >
               <motion.path
-                d="M 10 65 Q 12 15 85 15 M 70 5 L 85 15 L 70 28"
+                d="M 10 65 Q 18 15 85 15 M 70 5 L 85 15 L 70 28"
                 stroke="#FF4D4D"
-                strokeWidth="1.5"
+                strokeWidth="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 initial={{ pathLength: 0, opacity: 0 }}
@@ -136,8 +141,13 @@ export default function Re_Direct() {
 
         {/* Dark Button */}
         <button
-          className="bg-[#0b0e14] hover:bg-gray-800 active:scale-101
-             transition-transform duration-20 text-white px-5 sm:px-7 py-2 sm:py-3 rounded-full shadow-md text-sm sm:text-base whitespace-nowrap"
+          className={clsx(
+            "bg-[#0b0e14] hover:bg-gray-800 active:scale-101",
+            "transition-transform duration-20",
+            "text-white px-5 sm:px-7 py-2 sm:py-3",
+            "rounded-full shadow-md",
+            "text-sm sm:text-base whitespace-nowrap",
+          )}
         >
           View services
         </button>

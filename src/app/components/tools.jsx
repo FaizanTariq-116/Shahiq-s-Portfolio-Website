@@ -25,7 +25,7 @@ export default function Tools() {
         "min-h-140",
         "h-[65svh] sm:h-[80vh]",
         "flex items-center justify-center",
-        "bg-white overflow-hidden px-4"
+        "bg-white overflow-hidden px-4",
       )}
     >
       {/* ================= CENTER HUB ================= */}
@@ -34,7 +34,7 @@ export default function Tools() {
           "absolute z-10 rounded-full",
           "w-[clamp(78px,20vw,110px)]",
           "h-[clamp(78px,20vw,110px)]",
-          "bg-linear-to-br from-red-400"
+          "bg-linear-to-br from-red-400",
         )}
       />
 
@@ -42,9 +42,9 @@ export default function Tools() {
       <div
         className={clsx(
           "absolute rounded-full",
-          "w-[clamp(170px,46vw,260px)]",
-          "h-[clamp(170px,46vw,260px)]",
-          "border border-red-300/40"
+          "w-[clamp(185px,48vw,280px)]",
+          "h-[clamp(185px,48vw,280px)]",
+          "border border-red-300/40",
         )}
       />
 
@@ -52,9 +52,16 @@ export default function Tools() {
       <div
         className={clsx(
           "absolute rounded-full",
-          "w-[clamp(250px,66vw,360px)]",
-          "h-[clamp(250px,66vw,360px)]",
-          "border border-red-300/30"
+
+          // Mobile size reduced
+          "w-[clamp(220px,62vw,300px)]",
+          "h-[clamp(220px,62vw,300px)]",
+
+          // Desktop original size
+          "sm:w-[clamp(270px,70vw,380px)]",
+          "sm:h-[clamp(270px,70vw,380px)]",
+
+          "border border-red-300/30",
         )}
       />
 
@@ -62,9 +69,20 @@ export default function Tools() {
       <motion.div
         className={clsx(
           "absolute rounded-full",
-          "w-[clamp(300px,80vw,380px)]", // slightly smaller max width for mobiles
-          "h-[clamp(300px,80vw,380px)]",
-          "border border-red-300/40"
+          // ✅ MOBILE SIZE REDUCED
+          "w-[clamp(284px,78vw,340px)]",
+          "h-[clamp(280px,78vw,340px)]",
+          // ✅ ORIGINAL SIZE FROM SM UPWARDS
+          "sm:w-[clamp(330px,82vw,410px)]",
+          "sm:h-[clamp(330px,82vw,410px)]",
+          "lg:w-[clamp(380px,75vw,470px)]",
+          "lg:h-[clamp(380px,75vw,470px)]",
+          "border border-red-300/40",
+
+          // ✔ Orbit radius increased so all icons stay on outer ring
+          "[--orbit-radius:clamp(140px,38vw,160px)]",
+          "sm:[--orbit-radius:clamp(170px,40vw,185px)]",
+          "lg:[--orbit-radius:clamp(195px,42vw,210px)]",
         )}
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
@@ -73,24 +91,29 @@ export default function Tools() {
           const angle = (360 / orbitItems.length) * index;
           const Icon = item.icon;
 
-          // responsive translateX, smaller on mobile
-          const translateX = `clamp(100px, 35vw, 160px)`;
-
           return (
             <div
               key={index}
               className="absolute top-1/2 left-1/2"
               style={{
-                transform: `rotate(${angle}deg) translateX(${translateX}) rotate(-${angle}deg)`,
+                transform: `rotate(${angle}deg) translateX(var(--orbit-radius)) rotate(-${angle}deg)`,
               }}
             >
               <Link href={item.href}>
                 <motion.div
                   className={clsx(
-                    "w-[clamp(36px,9vw,48px)]",
-                    "h-[clamp(36px,9vw,48px)]",
-                    "rounded-full bg-white",
-                    "flex items-center justify-center"
+                    // ✅ MOBILE ICON SIZE REDUCED
+                    "w-[clamp(30px,8vw,40px)]",
+                    "h-[clamp(30px,8vw,40px)]",
+                    "sm:w-[clamp(36px,9vw,48px)]",
+                    "sm:h-[clamp(36px,9vw,48px)]",
+
+                    "rounded-full",
+                    "bg-white",
+                    "flex items-center justify-center",
+                    "ring-1 ring-red-300/60",
+                    "shadow-sm",
+                    "transition-shadow",
                   )}
                   initial={{ scale: 0, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
@@ -101,7 +124,10 @@ export default function Tools() {
                     damping: 20,
                     delay: index * 0.02,
                   }}
-                  whileHover={{ scale: 1.2 }}
+                  whileHover={{
+                    scale: 1.2,
+                    boxShadow: "0 0 0 6px rgba(239,68,68,0.12)",
+                  }}
                 >
                   <Icon className="text-red-500 text-[clamp(15px,4vw,20px)]" />
                 </motion.div>
