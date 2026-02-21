@@ -80,26 +80,29 @@ export default function Slider() {
     return () => unsubscribe();
   }, [x, totalWidth]);
 
+  //Move to next slide//
   const slideNext = () =>
     animate(x, x.get() - slideWidth, {
       type: "spring",
-      stiffness: 200,
-      damping: 25,
+      stiffness: 100,
+      damping: 35,
+      mass: 1.2,
     });
 
-  const slidePrev = () =>
-    animate(x, x.get() + slideWidth, {
-      type: "spring",
-      stiffness: 200,
-      damping: 25,
-    });
+ const slidePrev = () =>
+  animate(x, x.get() + slideWidth, {
+    type: "spring",
+    stiffness: 100,   // ⬇ slower movement
+    damping: 35,     // ⬆ smoother stop
+    mass: 1.2,       // adds weight (more natural feel)
+  });
 
   // Autoplay
-  useEffect(() => {
-    if (!slideWidth) return;
-    const interval = setInterval(slideNext, 3000);
-    return () => clearInterval(interval);
-  }, [slideWidth]);
+  // useEffect(() => {
+  //   if (!slideWidth) return;
+  //   const interval = setInterval(slideNext, 3000);
+  //   return () => clearInterval(interval);
+  // }, [slideWidth]);
 
   return (
     <motion.div
@@ -118,7 +121,9 @@ export default function Slider() {
           className={clsx("flex")}
           drag="x"
           dragConstraints={{ left: -Infinity, right: Infinity }}
-          dragElastic={0.2}
+          dragElastic={0.15}
+          dragMomentum={true}
+          dragDirectionLock
           style={{ x }}
         >
           {infiniteSlides.map((slide, idx) => (

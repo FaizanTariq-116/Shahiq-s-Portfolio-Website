@@ -69,7 +69,7 @@ export default function Re_Direct() {
               "bg-red-500 hover:bg-red-600 active:scale-101",
               "transition-transform duration-20",
               "text-white px-5 sm:px-7 py-2 sm:py-3",
-              "rounded-full shadow-md",
+              "rounded-full shadow-[4px_4px_0px_0px_rgba(50,35,20,0.9)]",
               "text-sm sm:text-base whitespace-nowrap",
             )}
           >

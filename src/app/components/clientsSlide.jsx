@@ -74,6 +74,18 @@ export default function ClientsSlider() {
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
+  useEffect(() => {
+  if (!slideWidth || !carouselWidth) return;
+
+  // Jump to middle copy
+  const middleOffset = slides.length * slideWidth;
+
+  // Center one slide
+  const centerOffset = (carouselWidth - slideWidth) / 2;
+
+  x.set(-middleOffset + centerOffset);
+}, [slideWidth, carouselWidth]);
+
 
   const infiniteSlides = [...slides, ...slides, ...slides];
   const totalWidth = slideWidth * slides.length;
@@ -106,26 +118,30 @@ export default function ClientsSlider() {
     return () => unsubscribe();
   }, [x, slideWidth, carouselWidth]);
 
+  //Move to next slide//
   const slideNext = () =>
     animate(x, x.get() - slideWidth, {
       type: "spring",
-      stiffness: 200,
-      damping: 25,
+      stiffness: 100,
+      damping: 35,
+      mass: 1.2,
     });
 
-  const slidePrev = () =>
-    animate(x, x.get() + slideWidth, {
-      type: "spring",
-      stiffness: 200,
-      damping: 25,
-    });
+ const slidePrev = () =>
+  animate(x, x.get() + slideWidth, {
+    type: "spring",
+    stiffness: 100,   // ⬇ slower movement
+    damping: 35,     // ⬆ smoother stop
+    mass: 1.2,       // adds weight (more natural feel)
+  });
+
 
   // Autoplay (paused on hover)
-  useEffect(() => {
-    if (!slideWidth || isHovered) return;
-    const interval = setInterval(slideNext, 3000);
-    return () => clearInterval(interval);
-  }, [slideWidth, isHovered]);
+  // useEffect(() => {
+  //   if (!slideWidth || isHovered) return;
+  //   const interval = setInterval(slideNext, 3000);
+  //   return () => clearInterval(interval);
+  // }, [slideWidth, isHovered]);
 
   return (
     <motion.div
@@ -142,11 +158,13 @@ export default function ClientsSlider() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <motion.div
-          className="flex"
+         <motion.div
+          className={clsx("flex")}
           drag="x"
           dragConstraints={{ left: -Infinity, right: Infinity }}
-          dragElastic={0.2}
+          dragElastic={0.15}
+          dragMomentum={true}
+          dragDirectionLock
           style={{ x }}
         >
           {infiniteSlides.map((slide, idx) => {
