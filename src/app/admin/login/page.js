@@ -16,7 +16,7 @@ export default function AdminLogin() {
     });
 
     if (res.ok) {
-      router.push("/amin/profile");
+      router.push("/admin/profile");
       router.refresh();
     } else {
       setError("Invalid login. Please check your username and password.");
