@@ -10,13 +10,14 @@ export function middleware(req) {
     "/admin/profile",
     "/admin/projects",
     "/admin/contact",
+    "/admin/settings",
     "/admin/login"
   ];
 
   // 3. LOGIC FOR ADMIN ROUTES
   if (pathname.startsWith("/admin")) {
     
-    // A. Strict path check: If path is not in the whitelist (e.g. /admin/dog), show 404
+    // A. Strict path check: If path is not in the whitelist (e.g. /admin/portfilio), show 404
     if (!allowedAdminPaths.includes(pathname)) {
       return NextResponse.rewrite(new URL("/404", req.url));
     }

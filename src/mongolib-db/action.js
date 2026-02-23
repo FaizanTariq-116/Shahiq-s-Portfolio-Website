@@ -4,14 +4,16 @@ import { connectDB } from "./mongodb";
 import Project from "@/models/Project";
 import About from "@/models/About";
 import Contact from "@/models/Contact";
+import Admin from "@/models/Admin";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import bcrypt from "bcryptjs";
 
 /**
- * SECURITY GUARD
- * This function is used by all other actions. It checks for the "VIP Pass" (cookie).
- * If the cookie is missing, it prevents any changes to your database.
+ * 1. SECURITY HELPER (The Gatekeeper)
+ * Checks the browser for the "admin_token".
+ * Every administrative action below calls this first.
  */
 async function verifyAdmin() {
   const cookieStore = await cookies();
@@ -22,31 +24,51 @@ async function verifyAdmin() {
   }
 }
 
-// --- AUTH ACTIONS ---
+// --- AUTHENTICATION ACTIONS ---
 
 /**
- * LOGOUT ACTION (The "Switching" Blocker)
- * 1. It deletes the security cookie immediately.
- * 2. It redirects you to the public website.
- * 3. Once this runs, the Middleware will block any attempt to switch back to admin.
+ * LOGOUT ACTION
+ * Deletes the cookie and redirects to the home page.
+ * This effectively blocks "switching" back to admin.
  */
 export async function logout() {
   const cookieStore = await cookies();
-  
-  // Delete the token to block switching
   cookieStore.delete("admin_token");
   
-  // Clear the cache so the website knows you are logged out
+  // Clear cache for the whole site
   revalidatePath("/");
-  
-  // Redirect to website
   redirect("/"); 
+}
+
+/**
+ * CHANGE CREDENTIALS ACTION
+ * Hashes the new password and updates the Database.
+ */
+export async function updateAdminCredentials(formData) {
+  await verifyAdmin(); 
+  await connectDB();
+
+  const newUsername = formData.get("username");
+  const newPassword = formData.get("password");
+
+  if (!newUsername || !newPassword) throw new Error("Fields cannot be empty");
+
+  // Hash the new password before saving to DB
+  const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+  await Admin.findOneAndUpdate({}, { 
+    username: newUsername, 
+    password: hashedNewPassword 
+  });
+
+  // Force logout so user must log in with new credentials
+  await logout(); 
 }
 
 // --- PROJECT ACTIONS ---
 
 export async function addProject(formData) {
-  await verifyAdmin(); // Check if logged in
+  await verifyAdmin(); 
   await connectDB();
   
   const data = Object.fromEntries(formData);
@@ -63,7 +85,7 @@ export async function addProject(formData) {
 }
 
 export async function deleteProject(mongoId) {
-  await verifyAdmin(); // Check if logged in
+  await verifyAdmin(); 
   await connectDB();
   
   await Project.findByIdAndDelete(mongoId);
@@ -75,7 +97,7 @@ export async function deleteProject(mongoId) {
 // --- ABOUT/PROFILE ACTIONS ---
 
 export async function updateAbout(formData) {
-  await verifyAdmin(); // Check if logged in
+  await verifyAdmin(); 
   await connectDB();
   
   const name = formData.get("name");
@@ -83,9 +105,10 @@ export async function updateAbout(formData) {
   const description = formData.get("description");
   const image = formData.get("image");
   
-  const skillsArray = formData.get("skills") 
-    ? formData.get("skills").split(",").map(s => s.trim()).filter(s => s !== "")
-    : [];
+  // Handles multiple skill inputs (Add/Delete functionality)
+  const skillsArray = formData.getAll("skills")
+    .map(s => s.trim())
+    .filter(s => s !== "");
 
   await About.findOneAndUpdate(
     {}, 
@@ -106,7 +129,7 @@ export async function updateAbout(formData) {
 // --- CONTACT ACTIONS ---
 
 export async function deleteContact(mongoId) {
-  await verifyAdmin(); // Check if logged in
+  await verifyAdmin(); 
   await connectDB();
   
   await Contact.findByIdAndDelete(mongoId);
