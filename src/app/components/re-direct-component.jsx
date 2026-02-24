@@ -34,9 +34,9 @@ export default function Re_Direct() {
       )}
     >
       {/* Logo */}
-      <div className="w-18 h-18 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border border-red-500 flex items-center justify-center mx-auto">
+      <div className="w-18 h-18 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-3xl shadow-[1.5px_1.5px_5px_2px_rgba(0,0,0,0.1)] flex items-center justify-center mx-auto">
         <Image
-          src="/Namelogo.png"
+          src="/Logo-of-Portfolio.png"
           alt="Logo S"
           width={100}
           height={100}
@@ -56,8 +56,8 @@ export default function Re_Direct() {
           ${inter.className}
         `}
       >
-        Lorem ipsum has been the industry's standard dummy text ever since lorem
-        ipsum has been the industry's standard dummy text ever since
+        ©2026 Shahiq Ahmed All rights reserved. Designing modern, user-focused
+        digital experiences for web and mobile products.
       </p>
 
       {/* Buttons */}
@@ -69,7 +69,7 @@ export default function Re_Direct() {
               "bg-red-500 hover:bg-red-600 active:scale-101",
               "transition-transform duration-20",
               "text-white px-5 sm:px-7 py-2 sm:py-3",
-              "rounded-full shadow-[4px_4px_0px_0px_rgba(50,35,20,0.9)]",
+              "rounded-full border shadow-[3px_3px_0px_2px_rgba(255,0,0,1)]",
               "text-sm sm:text-base whitespace-nowrap",
             )}
           >
@@ -145,7 +145,7 @@ export default function Re_Direct() {
             "bg-[#0b0e14] hover:bg-gray-800 active:scale-101",
             "transition-transform duration-20",
             "text-white px-5 sm:px-7 py-2 sm:py-3",
-            "rounded-full shadow-md",
+            "rounded-full border shadow-[3px_3px_0px_2px_rgba(0,0,0,1)]",
             "text-sm sm:text-base whitespace-nowrap",
           )}
         >

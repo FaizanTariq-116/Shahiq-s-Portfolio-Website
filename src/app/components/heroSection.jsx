@@ -133,7 +133,7 @@ export default function HeroSection() {
               "bg-red-500 hover:bg-red-600 active:scale-101",
               "transition-transform duration-20",
               "text-white px-5 sm:px-7 py-2 sm:py-3",
-              "rounded-full shadow-md",
+              "rounded-full shadow-[3px_3px_0px_2px_rgba()]",
               "text-sm sm:text-base whitespace-nowrap",
             )}
           >
@@ -147,7 +147,7 @@ export default function HeroSection() {
                 "bg-[#0b0e14] hover:bg-gray-800 active:scale-101",
                 "transition-transform duration-20",
                 "text-white px-5 sm:px-7 py-2 sm:py-3",
-                "rounded-full shadow-md",
+                "rounded-full border shadow-[3px_3px_0px_2px_rgba()]",
                 "text-sm sm:text-base whitespace-nowrap",
               )}
             >
